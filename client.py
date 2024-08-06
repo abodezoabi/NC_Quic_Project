@@ -31,7 +31,7 @@ def start_quic_client():
             if payload == CONNECTION_CLOSE:  # Check if the received payload is a CONNECTION_CLOSE signal
                 print(f"Received CONNECTION_CLOSE from {server}")
                 send_connection_close(client_socket, server)  # Send a CONNECTION_CLOSE signal back to the server
-                time.sleep(0.5)  # Wait for a short period before closing
+                time.sleep(0.3)  # Wait for a short period before closing
                 break
             elif payload.startswith(b'Hello, QUIC client!'):  # Check if the received payload is a client hello message
                 print(f"Received client hello from {server}")

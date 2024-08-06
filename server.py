@@ -10,11 +10,11 @@ CLIENT_HELLO = b'Hello, QUIC client!(Long header)'  # Define the client hello me
 connections = {}  # Initialize a dictionary to store connections
 
 # number of flows/streams
-num_flows = 3  # Define the number of flows
+num_flows = 10  # Define the number of flows
 
 
 def get_num_flows():
-    return num_flows  # Return the number of flows
+    return num_flows  # Return the number of flows/streams
 
 
 def start_quic_server():
@@ -93,8 +93,8 @@ def send_files_to_client(server_socket, client_address):
         print(f"Sending data for flow {flow['id']} with packet size {flow['packet_size']} bytes.")
         for _ in range(flow['num_packets']):
             send_next_packet(server_socket, client_address, flow)  # Send the next packet in the flow
-            time.sleep(0.0002)  # Briefly sleep to simulate network delay
-
+            time.sleep(0.001)  # Briefly sleep to simulate network delay
+            #time.sleep(0.005)
 
 def send_next_packet(server_socket, client_address, flow):
     if flow['total_bytes'] < flow['file_size']:
